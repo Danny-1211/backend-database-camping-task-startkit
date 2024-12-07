@@ -281,8 +281,8 @@ SELECT * FROM "USER" LIMIT 3;
     GROUP BY C.purchase_at;
 -- 6-5. 查詢：計算 11 月份有預約課程的會員人數（需使用 Distinct，並用 created_at 和 status 欄位統計）
 -- 顯示須包含以下欄位： 預約會員人數
-    SELECT Distinct COUNT(CB.user_id) AS 預約會員人數
-    FROM "COURSE_BOOKING" AS CB
-    INNER JOIN "USER" AS U ON CB.user_id = U.id
-    WHERE CB.status != '課程已取消'
-    GROUP BY CB.status, CB.created_at;
+    -- SELECT Distinct COUNT(CB.user_id) AS 預約會員人數
+    -- FROM "COURSE_BOOKING" AS CB
+    -- INNER JOIN "USER" AS U ON CB.user_id = U.id
+    -- WHERE CB.status != '課程已取消'
+    -- GROUP BY CB.status, CB.created_at;
