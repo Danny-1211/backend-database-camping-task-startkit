@@ -262,12 +262,12 @@ SELECT * FROM "USER" LIMIT 3;
     ORDER BY c.experience_years DESC;
 -- 6-2 查詢：查詢每種專長的教練數量，並只列出教練數量最多的專長（需使用 group by, inner join 與 order by 與 limit 語法）
 -- 顯示須包含以下欄位： 專長名稱, coach_total
-    -- SELECT MAX(S.name) AS 專長名稱,Count(CLK.coach_id) AS coach_total
-    -- FROM "SKILL" AS S
-    -- INNER JOIN "COACH_LINK_SKILL" AS CLK ON CLK.skill_id = S.id
-    -- GROUP BY CLK.skill_id
-    -- ORDER BY Count(CLK.coach_id) DESC
-    -- LIMIT 1;
+    SELECT MAX(S.name) AS 專長名稱,Count(CLK.coach_id) AS coach_total
+    FROM "SKILL" AS S
+    INNER JOIN "COACH_LINK_SKILL" AS CLK ON CLK.skill_id = S.id
+    GROUP BY CLK.skill_id
+    ORDER BY Count(CLK.coach_id) DESC
+    LIMIT 1;
 -- 6-3. 查詢：計算 11 月份組合包方案的銷售數量
 -- 顯示須包含以下欄位： 組合包方案名稱, 銷售數量
     SELECT CPACK.name AS 組合包方案名稱, count(CPUR.credit_package_id) AS 銷售數量
@@ -281,8 +281,8 @@ SELECT * FROM "USER" LIMIT 3;
     GROUP BY C.purchase_at;
 -- 6-5. 查詢：計算 11 月份有預約課程的會員人數（需使用 Distinct，並用 created_at 和 status 欄位統計）
 -- 顯示須包含以下欄位： 預約會員人數
-    SELECT Distinct COUNT(CB.user_id) AS 預約會員人數
-    FROM "COURSE_BOOKING" AS CB
-    INNER JOIN "USER" AS U ON CB.user_id = U.id
-    WHERE CB.status != '課程已取消'
-    GROUP BY CB.status, CB.created_at;
+    -- SELECT Distinct COUNT(CB.user_id) AS 預約會員人數
+    -- FROM "COURSE_BOOKING" AS CB
+    -- INNER JOIN "USER" AS U ON CB.user_id = U.id
+    -- WHERE CB.status != '課程已取消'
+    -- GROUP BY CB.status, CB.created_at;
